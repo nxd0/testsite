@@ -1,0 +1,233 @@
+['.DS_Store', 'airtable-out.json', 'netflix-out.json', 'tmisha-out.json', 'twitter-out.json', 'walmart-out.json']
+
+
+SIGN-IN ANALYSIS: NETFLIX
+Best Practice Check: (8)
+--------------
+
+Rules followed: 8/8
+Weighted Score: 100
+
+Rule #1: Resist using placeholder text as labels.
+	Outcome: PASS
+	User Impact: Moderate
+
+
+Rule #2: Top align form labels.
+	Outcome: PASS
+	User Impact: Minor
+
+
+Rule #3: Arrange forms in one column
+	Outcome: PASS
+	User Impact: Minor
+
+
+Rule #4: Have a 'Remember Me' option.
+	Outcome: PASS
+	User Impact: Serious
+
+
+Rule #5: Have a 'Show/Hide Password' toggle.
+	Outcome: PASS
+	User Impact: Serious
+
+
+Rule #6: Have a password recovery option.
+	Outcome: PASS
+	User Impact: Severe
+
+
+Rule #7: Avoid "clear" buttons.
+	Outcome: PASS
+	User Impact: Serious
+
+
+Rule #8: Make CTAs descriptive.
+	Outcome: PASS
+	User Impact: Moderate
+
+
+STATE ANALYSIS
+Number of states detected: 1
+--------------
+
+State Analysis: START
+"output/netflix-out.json
+--------------
+
+Sorted Components: (9)
+	Show/Hide Password Toggle
+	Password Input Label
+	Remember Me Checkbox Label
+	Submit Button
+	Forgot Password Link
+	Password Input Field
+	Email Input Label
+	Email Input Field
+	Remember Me Checkbox
+--------------
+
+
+Show/Hide Password Toggle
+	Tag = input
+	Name = showPassword
+	ID = None
+	X-coor = 0
+	Y-coor = 0
+	Active = True
+	Visable = False
+
+
+Password Input Label
+	Tag = label
+	Name = None
+	ID = lbl-password
+	X-coor = 515
+	Y-coor = 284
+	Active = True
+	Visable = True
+	Text = Password
+
+
+Remember Me Checkbox Label
+	Tag = label
+	Name = None
+	ID = None
+	X-coor = 551
+	Y-coor = 516
+	Active = True
+	Visable = True
+	Text = Remember me
+
+
+Submit Button
+	Tag = [type="submit"]
+	Name = None
+	ID = None
+	X-coor = 515
+	Y-coor = 457
+	Active = True
+	Visable = True
+	Text = Sign In
+
+
+Forgot Password Link
+	Tag = a
+	Name = None
+	ID = None
+	X-coor = 515
+	Y-coor = 422
+	Active = True
+	Visable = True
+	Text = Forgot your email or password?
+
+
+Password Input Field
+	Tag = input
+	Name = password
+	ID = password
+	X-coor = 515
+	Y-coor = 305
+	Active = True
+	Visable = True
+
+
+Email Input Label
+	Tag = label
+	Name = None
+	ID = lbl-email
+	X-coor = 515
+	Y-coor = 189
+	Active = True
+	Visable = True
+	Text = Email
+
+
+Email Input Field
+	Tag = input
+	Name = email
+	ID = email
+	X-coor = 515
+	Y-coor = 210
+	Active = True
+	Visable = True
+
+
+Remember Me Checkbox
+	Tag = input
+	Name = rememberMe
+	ID = bxid_rememberMe_true
+	X-coor = 515
+	Y-coor = 516
+	Active = True
+	Visable = True
+
+
+Unsorted Components: (7)
+--------------
+
+Tag = input
+Name = None
+ID = None
+X-coor = 793.640625
+Y-coor = 286
+Active = True
+Visable = True
+
+
+Tag = input
+Name = flow
+ID = None
+X-coor = 0
+Y-coor = 0
+Active = True
+Visable = False
+
+
+Tag = input
+Name = mode
+ID = None
+X-coor = 0
+Y-coor = 0
+Active = True
+Visable = False
+
+
+Tag = input
+Name = action
+ID = None
+X-coor = 0
+Y-coor = 0
+Active = True
+Visable = False
+
+
+Tag = input
+Name = withFields
+ID = None
+X-coor = 0
+Y-coor = 0
+Active = True
+Visable = False
+
+
+Tag = input
+Name = authURL
+ID = None
+X-coor = 0
+Y-coor = 0
+Active = True
+Visable = False
+
+
+Tag = input
+Name = nextPage
+ID = None
+X-coor = 0
+Y-coor = 0
+Active = True
+Visable = False
+
+
+[Finished in 0.1s]
