@@ -5,7 +5,9 @@ from best_practice_check import*
 from page_setup import*
 
 import sys
-print sys.path
+
+
+
 
 #Load pages (page name)
 
