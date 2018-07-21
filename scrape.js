@@ -2,7 +2,9 @@ const puppeteer = require('puppeteer');
 
 var fs = require('fs');
 const TEST_URLS = [
-    {'url': 'https://www.walmart.com/account/login?tid=0&returnUrl=%2F', 'name': 'walmart'},
+  {'url': 'https://github.com/login', 'name': 'github'},  
+  {'url': 'https://www.gartner.com/login/loginInitAction.do?method=initialize&login=mkhdr&TARGET=https%3A%2F%2Fwww.gartner.com%2Fen', 'name': 'gartner'},
+  {'url': 'https://www.walmart.com/account/login?tid=0&returnUrl=%2F', 'name': 'walmart'},
   {'url': 'https://tmisha.com/login.html', 'name': 'tmisha'},
   {'url': 'https://airtable.com/login', 'name': 'airtable'},
   {'url': 'https://www.netflix.com/login', 'name': 'netflix'},
@@ -11,28 +13,45 @@ const TEST_URLS = [
 const IDX = 0;
 
 //const IDX = parseInt(process.argv[2]);
-console.log(IDX);
-const OUT_DIR = 'python/';
+const OUT_DIR = 'output/';
 //var { testLabelFieldGrouping } = require('./LoginTests.js');
+
+//------------------------------------
+
+
+
+var day = new Date();
+timestamp = day.getTime();
+//console.log(timestamp)
+
+
+
+console.log('\n\n--------------------------------------------------------');
+console.log('Starting SCRAPE.JS');
+console.log('--------------------------------------------------------');
 
 
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+  
+  /*
   page.on('console', msg => {
     for (let i = 0; i < msg.args.length; ++i)
       console.log(`${i}: ${msg.args[i]}`);
   });
+  */
 
   const url = TEST_URLS[IDX]['url'];
   const name = TEST_URLS[IDX]['name'];
-  console.log(IDX);
-  console.log('Doing:', name, url);
+  console.log('\nScraping:', name, url);
   await page.goto(url);
   page.setViewport({width : 1400 , height : 800})
   // await page.screenshot({path: 'example.png'});
   console.log('Test 1');
-  await page.screenshot({path: 'screenshot.png'});
+  
+  //-------------- IF YOU WANT A SCREENSHOT ----------------!!!!!!!!!!!!!!
+  //await page.screenshot({path: 'screenshot.png'});
 
   let it = await page.evaluate(() => {
     // let selection = window.devicePixelRatio; // window.getSelection();
@@ -98,11 +117,40 @@ const OUT_DIR = 'python/';
   });
   // print(it)
   // console.log(it); //JSON.parse(it));
-  fs.writeFile([OUT_DIR, name,'-out.json'].join(''), JSON.stringify(it, null, 2), 'utf8', () => console.log('Done writing'));
+  fs.writeFile([OUT_DIR, name,'-out@',timestamp,'.json'].join(''), JSON.stringify(it, null, 2), 'utf8', () => console.log('Done writing'));
   // testLabelFieldGrouping(it[0]);
   // testLabelFieldGrouping(it[1]);
 
   // const loginForm = await findLoginForm(page) 
   // console.log('Test 2', it);
+
+
+//-------------------------
+//RUN PYTHON CODE
+//-------------------------
+
+
+var myPythonScriptPath = 'run.py';
+
+// Use python shell
+var PythonShell = require('python-shell');
+var pyshell = new PythonShell(myPythonScriptPath);
+
+pyshell.on('message', function (message) {
+    // received a message sent from the Python script (a simple "print" statement)
+    console.log(message);
+});
+
+// end the input stream and allow the process to exit
+pyshell.end(function (err) {
+    if (err){
+        throw err;
+    };
+
+    console.log('Analysis Complete');
+});
+
+
   await browser.close();
 })();
+
