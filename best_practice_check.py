@@ -121,7 +121,17 @@ def best_practice_checker(page_state):
 			rule8.outcome = "FAIL, no submit button found."	
 		pages[page_state.page_name].best_practices.append(rule8)
 		
+		#RULE 9
+		rule9 = BestPractice('Auto-focus on the first field.',2)
 
+		if "Email Input Field" in sorted_components:
+			if sorted_components["Email Input Field"].focus == "true":
+				rule9.outcome = "Pass"
+			else:
+				rule9.outcome = "Fail"		
+		else:
+			rule8.outcome = "FAIL, no email input field  found."	
+		pages[page_state.page_name].best_practices.append(rule9)
 
 	#Rules Followed Calculation
 	success_count = 0

@@ -12,6 +12,7 @@ class Component:
 		self.visable = visable		
 		self.placeholder = None	
 		self.vis_text = None	
+		self.focus = None
 	def print_all(self):
 		print ("Tag = " + str(self.tag))
 		print ("Name = " + str(self.name))
@@ -20,6 +21,7 @@ class Component:
 		print ("Y-coor = " + str(self.y))
 		print ("Active = " + str(self.active))
 		print ("Visable = " + str(self.visable))
+		print ("Focus = " + str(self.focus))
 		if self.placeholder != None:
 			print ("Placeholder Text = " + str(self.placeholder)) 
 		if self.vis_text != None:
@@ -47,6 +49,9 @@ def gather_components(site,raw_components):
 						y += 1
 					raw_components[count].placeholder = str(ph)	
 		
+		#get focus
+		raw_components[count].focus = e.get('focus',"none")
+
 		#gather visable text (INNER HTML)
 		html_str = (e.get('outerHTML',"none"))
 
@@ -95,7 +100,7 @@ def sort_components(component_list,unsorted_component_list):
 			sorted_components["Remember Me Checkbox Label"] = i
 		elif ("remember" in str(i.name).lower() or "remember" in str(i.id).lower() ) and "input" == str(i.tag).lower():
 			sorted_components["Remember Me Checkbox"] = i
-		elif str(i.tag).lower() == "input" and ("email" in str(i.name).lower() or "login" in str(i.name).lower()):
+		elif str(i.tag).lower() == "input" and ("email" in str(i.name).lower() or "login" in str(i.name).lower() or "username" in str(i.name).lower()):
 			sorted_components["Email Input Field"] = i
 		elif str(i.tag).lower() == "label" and "email" in str(i.vis_text).lower():
 			sorted_components["Email Input Label"] = i
@@ -105,7 +110,7 @@ def sort_components(component_list,unsorted_component_list):
 			
 		elif str(i.tag).lower() == "label" and "pass" in str(i.vis_text).lower():
 			sorted_components["Password Input Label"] = i
-		elif (str(i.tag).lower() == '[type="submit"]' or ((str(i.tag).lower() == 'button') and ("log" in str(i.vis_text).lower() or "sign" in str(i.vis_text).lower()) or "continue" in str(i.vis_text).lower() or "next" in str(i.vis_text).lower())):
+		elif ((str(i.tag).lower() == '[type="submit"]' or ((str(i.tag).lower() == 'button')) and (("log" in str(i.vis_text).lower() or "sign" in str(i.vis_text).lower()) or "continue" in str(i.vis_text).lower() or "next" in str(i.vis_text).lower()))):
 			sorted_components["Submit Button"] = i
 	
 		elif "clear" in str(i.vis_text).lower():
@@ -132,6 +137,7 @@ def print_sorted_components(sorted_components):
 		print ("\t" + "Y-coor = " + str(sorted_components[i].y))
 		print ("\t" +  "Active = " + str(sorted_components[i].active))
 		print ("\t" + "Visable = " + str(sorted_components[i].visable))
+		print ("\t" + "Focus = " + str(sorted_components[i].focus))
 		if sorted_components[i].placeholder != None:
 			print ("\t" + "Placeholder Text = " + str(sorted_components[i].placeholder)) 
 		if sorted_components[i].vis_text != None:

@@ -18,7 +18,7 @@ print '--------------------------------------------------------'
 #for printing files found
 print "\nJSON FILES FOUND:\n--------------"
 for file in output:
-	if '.json' in file:
+	if '.json' in file: 
 		print file
 
 #Load pages & page states
@@ -30,16 +30,17 @@ for file in output:
 		load_page_state (Page_State(name, 'output/' + file_name, 'start'))
 '''
 
-#Find the most recent json file, and Load pages & page states
+
+#Find the most recent json files, and Load pages & page states
 
 mr_name = ''
 mr_time = ''
 mr_file_name = ''
 
 for file in output:
-	if '.json' in file:
+	if '-start' in file:
 		file_name = str(file)
-		name = file_name.replace('-out','')
+		name = file_name.replace('-start','')
 		name = name.replace('.json','')
 		time = ''
 		for sub in name:
@@ -66,6 +67,7 @@ for file in output:
 print "most recent name: " + mr_name
 print "most recent time: " + mr_time
 print 'most recent file: ' + mr_file_name
+
 load_page (mr_name, "sign-in")
 load_page_state (Page_State(mr_name, 'output/' + mr_file_name, 'start'))
 
